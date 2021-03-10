@@ -1,4 +1,5 @@
 export default interface Forecast {
+    [x: string]: any;
     city_name: String;
     data: [
         {valid_date: String,

@@ -34,7 +34,6 @@ function OutputContent() {
     return (
         <div className={classes.root}>
             <Typography variant='h5'>Weather App</Typography>
-            {/* <Typography variant='body1'>Three day forecast for ${props.forecast.city_name}</Typography> */}
             <Typography variant='body1'>Three day forecast for {forecast?.city_name}</Typography>
             <br />
             {forecast !== undefined &&

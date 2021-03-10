@@ -5,11 +5,7 @@ import TopBar from './components/TopBar';
 import React from 'react';
 import InputContent from './content/inputContent';
 import OutputContent from './content/outputContent';
-import { 
-  // useState, 
-  useContext, 
-  // useEffect 
-} from 'react';
+import { useContext } from 'react';
 import { Context } from './contexts/Context';
 
 function App() {

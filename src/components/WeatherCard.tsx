@@ -50,7 +50,7 @@ function WeatherCard(props: Props) {
             <Typography variant='body1'>Min. Temp: {forecast.min_temp}</Typography>
             <Typography variant='body1'>{forecast.weather.description}</Typography>
             <div className={classes.imgContainer}>
-                <img className={classes.img} src={require(`./icons/${dynamic_filename}.png`).default} alt={'icon'} />
+                <img className={classes.img} src={require(`./icons/${dynamic_filename}.png`).default} alt={'weather icon'} />
             </div>
             <Typography variant='body1'>Sunrise: {sunrise}</Typography>
             <Typography variant='body1'>Sunset: {sunset}</Typography>
