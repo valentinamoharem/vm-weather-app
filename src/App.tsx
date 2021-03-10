@@ -1,31 +1,25 @@
+// import Axios from 'axios'
 import './App.css';
 import Footer from './components/Footer';
 import TopBar from './components/TopBar';
 import React from 'react';
-// import InputContent from './content/inputContent';
+import InputContent from './content/inputContent';
 import OutputContent from './content/outputContent';
+import { 
+  // useState, 
+  useContext, 
+  // useEffect 
+} from 'react';
+import { Context } from './contexts/Context';
 
 function App() {
-  const [mainContent] = React.useState<{}>(<OutputContent />);
-  // const [city, setCity] = useState<String | null>(null)
+  const forecast = useContext(Context).forecast;
 
-  // missing global context for city value to pass down into 
-  // dropdown menu and textfield and set city method to make request
-
-  // missing submit button to get city forecast
-
-  // then missing data display for city forecast and return button
-  // to come back to original page
-
-  // render title and description and change main content based on state
-  // missing main content state to display forecast data input and output
-
-  // missing topbar and footer
   return (
     <div className="App">
       <TopBar />
       <header className="App-header">
-        {mainContent}        
+        { !forecast ? (<InputContent />) : (<OutputContent />) }        
       </header>
       <Footer />
     </div>
@@ -33,3 +27,18 @@ function App() {
 }
 
 export default App;
+
+
+// TO-DO
+// setCity according to input value
+// trigger input value with 'other' option in select input menu
+// setCity according to text field input value
+// handle error for typed city in text field input
+// GET forecast using city value
+// handle error for GET request 
+// set forecast value globally if succesful response
+// update app state if necessary (TEST)
+// display output forecast data
+// set change logic using existence of forecast data
+// add functionality to Back button (resets global state for city and/or forecast, sets both to null)
+// TEST value reset for global app

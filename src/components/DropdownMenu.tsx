@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { Divider } from '@material-ui/core';
+import { Context } from '../contexts/Context';
+
+interface props {
+
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -19,13 +24,18 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function DropdownMenu() {
+export default function DropdownMenu(props: props) {
+  const { city, setCity, forecast, setForecast, otherCity, setOtherCity } = useContext(Context);
   const classes = useStyles();
-  const [age, setAge] = React.useState<string | number>('');
   const [open, setOpen] = React.useState(false);
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setAge(event.target.value as number);
+  console.log(forecast)
+  console.log(setForecast)
+  console.log(otherCity)
+
+  const HandleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
+    setCity(e.target.value as String);
+    (e.target.value === 'Other' ? setOtherCity(true) : setOtherCity(false));
   };
 
   const handleClose = () => {
@@ -46,17 +56,17 @@ export default function DropdownMenu() {
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={age}
-          onChange={handleChange}
+          value={city}
+          onChange={HandleChange}
         >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem>Buenos Aires</MenuItem>
-          <MenuItem>New York</MenuItem>
-          <MenuItem>Madrid</MenuItem>
+          <MenuItem value="Minneapolis">Minneapolis</MenuItem>
+          <MenuItem value="New York">New York</MenuItem>
+          <MenuItem value="Kansas">Kansas</MenuItem>
           <Divider />
-          <MenuItem>Other</MenuItem>
+          <MenuItem value="Other">Other</MenuItem>
         </Select>
       </FormControl>
     </div>
