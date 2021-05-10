@@ -4,10 +4,10 @@ import Forecast from '../typings/forecast'
 interface ContextInt {
     forecast: Forecast | null;
     setForecast: React.Dispatch<React.SetStateAction<Forecast | null>>;
-    city: String | null;
-    setCity: React.Dispatch<React.SetStateAction<String | null>>;
-    otherCity: boolean;
-    setOtherCity: React.Dispatch<React.SetStateAction<boolean>>;
+    currentLoc: number[] | null;
+    setCurrentLoc: React.Dispatch<React.SetStateAction<number[] | null>>;
+    customCities: String[];
+    setCustomCities: React.Dispatch<React.SetStateAction<String[]>>;
 }
 
 interface Props {}
@@ -16,13 +16,13 @@ export const Context = React.createContext<ContextInt>(undefined!)
 
 const ContextProvider: React.FC<Props> = props => {
     const [forecast, setForecast] = React.useState<Forecast | null>(null)
-    const [city, setCity] = React.useState<String | null>(null)
-    const [otherCity, setOtherCity] = React.useState<boolean>(false)
+    const [currentLoc, setCurrentLoc] = React.useState<number[] | null>([])
+    const [customCities, setCustomCities] = React.useState<String[]>([])
 
     const {children} = props
 
     return(
-        <Context.Provider value={{forecast, setForecast, city, setCity, otherCity, setOtherCity}}>
+        <Context.Provider value={{forecast, setForecast, currentLoc, setCurrentLoc, customCities, setCustomCities}}>
             {children}
         </Context.Provider>
     )

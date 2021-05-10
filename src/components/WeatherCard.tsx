@@ -6,7 +6,7 @@ const useStyles = makeStyles({
     },
     card: {
         padding: '10px',
-        width: '250px',
+        width: '230px',
     },
     imgContainer: {
         margin: 'auto'
@@ -28,11 +28,18 @@ interface Props {
             },
             sunrise_ts: Number,
             sunset_ts: Number,
-        };
+        } | null;
 }
 
 function WeatherCard(props: Props) {
     const classes = useStyles();
+
+    if(!props.forecast){
+        return (
+            <div>No forecast</div>
+        )
+    }
+
     const forecast = props.forecast;
     const sunrise_ts = Number(forecast.sunrise_ts);
     const sunset_ts = Number(forecast.sunset_ts);

@@ -81,7 +81,7 @@ export default function TopBar() {
       <AppBar position="static">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            <strong>INNOVID</strong> | Weather App
+            <strong>Weather App</strong>
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>

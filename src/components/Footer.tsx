@@ -19,7 +19,7 @@ export default function LabelBottomNavigation() {
     return (
         <BottomNavigation className={classes.root}>
             <div className={classes.footer}>
-                <Typography variant='body2'>Copyright C Innovid Inc. All Rights Reserved | For internal use only  | v1.0.0</Typography>
+                <Typography variant='body2'>Weather App - 2021</Typography>
             </div>
         </BottomNavigation>
     );
