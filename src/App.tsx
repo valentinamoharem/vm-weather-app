@@ -4,7 +4,6 @@ import Footer from './components/Footer';
 import TopBar from './components/TopBar';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import WeatherCard from './components/WeatherCard';
-import InputContent from './content/inputContent';
 import {
   Button,
   makeStyles,
@@ -30,21 +29,6 @@ const useStyles = makeStyles({
   }
 });
 
-// TO-DO
-
-// IMPROVE UX (RM BUTTON ON CUSTOM CITIES)
-// implement remove button for forecast sections for custom cities
-// implement prop removable in forecast output section
-
-// UPDATE UI BY CITIES CHANGE
-// implement effects that update rendered content on change of
-// context state city array
-
-// REQUESTS
-// modify weather request to get spanish content and 5 days forecast
-// https://www.weatherbit.io/api/swaggerui/weather-api-v2#/
-
-
 function App() {
   const { forecast, setForecast, currentLoc, setCurrentLoc, customCities, setCustomCities } = useContext(Context);
   const [customForecasts, setCustomForecasts] = useState<Forecast[]>([])
@@ -61,13 +45,13 @@ function App() {
           .then(res => {
             setForecast(res.data)
             if (res.status == 204) {
-              alert('Por favor, ingresá una ciudad válida.')
+              alert('Sorry! There was an error while trying to fetch forecast for your location. Try again!')
             }
           })
           .catch(err => alert(err))
       })
     } else {
-      console.log('geolocalizacion no disponible')
+      console.log('Sorry! Geolocation is not available.')
     }
   }, [setCurrentLoc])
 
@@ -90,9 +74,16 @@ function App() {
   }
 
   const handleSubmit = () => {
-    setCustomCities(customCities.concat(city))
-    getForecast(city);
-    clearInput();
+    const match = customCities.find(c => c.toLowerCase() == city.toLowerCase())
+    if(!match){
+      setCustomCities(customCities.concat(city.toLowerCase().trim()))
+      getForecast(city);
+      clearInput();
+    }
+    else {
+      alert('Forecast for this city is already available!')
+      return
+    }
   }
 
   return (
