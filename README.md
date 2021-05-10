@@ -10,7 +10,7 @@ You can get npm here: https://www.npmjs.com/get-npm.
 
 ### Dependencies
 
-In the project directory, execute:
+In the project directory, run:
 
 ### `npm i`
 
